@@ -16,6 +16,13 @@ def berry_finder(t):
     True
     """
     "*** YOUR CODE HERE ***"
+    if label(t) == 'berry':
+        return True
+    for i in branches(t):
+        if berry_finder(i):
+            return True
+        pass
+    return False
 
 
 def replace_loki_at_leaf(t, lokis_replacement):
@@ -48,6 +55,8 @@ def replace_loki_at_leaf(t, lokis_replacement):
     True
     """
     "*** YOUR CODE HERE ***"
+    return tree(label(t).replace('loki', lokis_replacement) if is_leaf(t) else label(t), [replace_loki_at_leaf(b, lokis_replacement) for b in branches(t)])
+    
 
 
 
@@ -147,6 +156,7 @@ def distance(city_a, city_b):
     5.0
     """
     "*** YOUR CODE HERE ***"
+    return sqrt((get_lat(city_a) - get_lat(city_b))**2 + (get_lon(city_a) - get_lon(city_b))**2)
 
 def closer_city(lat, lon, city_a, city_b):
     """
@@ -164,6 +174,8 @@ def closer_city(lat, lon, city_a, city_b):
     'Bucharest'
     """
     "*** YOUR CODE HERE ***"
+    t = make_city('T', lat, lon)
+    return get_name(city_a) if distance(t, city_a) < distance(t, city_b) else get_name(city_b)
 
 def check_city_abstraction():
     """
