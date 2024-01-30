@@ -27,6 +27,16 @@ def insert_items(s, before, after):
     True
     """
     "*** YOUR CODE HERE ***"
+    i = 0
+    while not i == len(s):
+        if s[i] == before:
+            s.insert(i+1, after)
+            i += 2
+        else:
+            i += 1
+            pass
+        pass
+    return s
 
 
 def count_occurrences(t, n, x):
@@ -51,6 +61,14 @@ def count_occurrences(t, n, x):
     2
     """
     "*** YOUR CODE HERE ***"
+    cnt = 0
+    while not n == 0:
+        if next(t) == x:
+            cnt += 1
+            pass
+        n -= 1
+        pass
+    return cnt
 
 
 def repeated(t, k):
@@ -74,6 +92,19 @@ def repeated(t, k):
     """
     assert k > 1
     "*** YOUR CODE HERE ***"
+    curr = next(t)
+    times = 1
+    while times < k:
+        v = next(t)
+        if not v == curr:
+            times = 1
+            curr = v
+        else:
+            times += 1
+            pass
+        pass
+    return curr
+
 
 
 def partial_reverse(s, start):
