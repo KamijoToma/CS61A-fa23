@@ -18,6 +18,14 @@ def duplicate_link(link, val):
     Link(1, Link(2, Link(2, Link(2, Link(2, Link(3))))))
     """
     "*** YOUR CODE HERE ***"
+    while not link == Link.empty:
+        if link.first == val:
+            link.rest = Link(val, link.rest)
+            link = link.rest
+            pass
+        link = link.rest
+        pass
+    pass
 
 
 def convert_link(link):
@@ -30,6 +38,12 @@ def convert_link(link):
     []
     """
     "*** YOUR CODE HERE ***"
+    py_list = []
+    while not link == Link.empty:
+        py_list.append(link.first)
+        link = link.rest
+        pass
+    return py_list
 
 
 def multiply_lnks(lst_of_lnks):
@@ -48,12 +62,12 @@ def multiply_lnks(lst_of_lnks):
     Link(48, Link(12, Link(0)))
     """
     product = 1
-    for _________ in ________________:
-        if __________________________________________:
-            _________________________________
-        ___________________
-    lst_of_lnks_rests = [_________ for _________ in ________________]
-    return _________________________________________________
+    for link in lst_of_lnks:
+        if link == Link.empty:
+            return Link.empty
+        product *= link.first
+    lst_of_lnks_rests = [link.rest for link in lst_of_lnks]
+    return Link(product, multiply_lnks(lst_of_lnks_rests))
 
 
 class Link:
