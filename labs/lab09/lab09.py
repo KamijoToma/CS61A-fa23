@@ -1,4 +1,6 @@
-def cumulative_mul(t):
+from functools import reduce
+
+def cumulative_mul(t, echo=False):
     """Mutates t so that each node's label becomes the product of all labels in
     the corresponding subtree rooted at t.
 
@@ -12,7 +14,9 @@ def cumulative_mul(t):
     Tree(5040, [Tree(60, [Tree(3), Tree(4), Tree(5)]), Tree(42, [Tree(7)])])
     """
     "*** YOUR CODE HERE ***"
-
+    t.label = t.label * reduce(lambda x,y: x*y, [cumulative_mul(sub_tree, True) for sub_tree in t.branches], 1)
+    if echo: 
+        return t.label
 
 def prune_small(t, n):
     """Prune the tree mutatively, keeping only the n branches
@@ -31,11 +35,11 @@ def prune_small(t, n):
     >>> t3
     Tree(6, [Tree(1), Tree(3, [Tree(1), Tree(2)])])
     """
-    while ___________________________:
-        largest = max(_______________, key=____________________)
-        _________________________
-    for __ in _____________:
-        ___________________
+    while not t.is_leaf() and len(t.branches) > n:
+        largest = max(t.branches, key=lambda x: x.label)
+        t.branches.remove(largest)
+    for sub_tree in t.branches:
+        prune_small(sub_tree, n)
 
 
 def delete(t, x):
